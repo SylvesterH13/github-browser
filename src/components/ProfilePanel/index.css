@@ -1,0 +1,37 @@
+.ProfileCard {
+    height: 100% !important;
+}
+
+a.ProfileLink { 
+    text-decoration: none;
+}
+
+a.ProfileLink:link { color: black !important; }
+a.ProfileLink:visited { color: black !important; }
+a.ProfileLink:hover { color: dodgerblue !important; }
+a.ProfileLink:active { color: grey !important; }
+
+.ProfileCard h2 {
+    font-size: 3rem;
+    margin: 2vh 0;
+}
+
+.ProfileCard p,h2 {
+    font-family: 'Roboto', sans-serif;
+}
+
+.ProfileImage {
+    border-radius: 50%;
+    max-width: 60%;   
+    height: auto;
+}
+
+.ProfileCardDetails {
+    width: 50%;
+    margin: auto;
+    padding: 3vh 0;
+}
+
+.ProfileCardDetails p {
+    text-align: left;
+}

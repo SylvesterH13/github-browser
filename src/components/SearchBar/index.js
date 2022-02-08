@@ -1,7 +1,7 @@
+import './index.css'
 import { Fragment } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import './index.css'
 
 function SearchBar() {
     return (
