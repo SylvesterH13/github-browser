@@ -9,14 +9,14 @@ function RepoList (props) {
 }
 
 function GetListItem (repo) {
-    let createdAt = new Date(repo.created_at).toLocaleDateString();
+    let createdAt = new Date(repo.created_at).toLocaleDateString('pt-BR');
     return (
-        <ListGroup.Item action>
-            <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">{repo.name}</h5>
+        <ListGroup.Item action key={repo.id}>
+            <div className="d-flex w-100 justify-content-between">
+                <h5 className="mb-1">{repo.name}</h5>
                 <small>Stars: {repo.stargazers_count}</small>
             </div>
-            <p class="mb-1">{repo.description}</p>
+            <p className="mb-1">{repo.description}</p>
             <small>Created at {createdAt}</small>                    
         </ListGroup.Item>
     );

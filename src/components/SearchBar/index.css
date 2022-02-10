@@ -5,5 +5,9 @@
 .SearchBarButton {
     margin: 0 1vw;
     width: 10rem;
-    font-size: 1rem
+    font-size: 1rem;
+}
+
+.SearchBarButton:focus {
+    box-shadow: none !important;
 }

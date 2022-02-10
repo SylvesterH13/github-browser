@@ -5,40 +5,59 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ProfilePanel from './components/ProfilePanel';
 import ReposPanel from './components/ReposPanel';
+import UserApi from './api/UserApi';
+import { Component, useState } from 'react';
 
-function GetUser() {
-	return {
-		username: "SylvesterH13",
-		name: "Sylvester Henrique",
-		company: "Take Blip",
-		location: "Divinópolis, Brazil",
-		createdAt: "2016-06-16T17:38:51Z",
-		avatarUrl: "https://avatars.githubusercontent.com/u/19980165?v=4",
-		followers: 9,
-		following: 15,
-		htmlUrl: "https://github.com/SylvesterH13"
+class App extends Component {
+
+	constructor(props) {
+		super(props);
+		this.initialState = {
+			user: null,
+			repos: null,
+			starred: null
+		}
+		this.searchUserAsync = this.searchUserAsync.bind(this);
+		this.state = this.initialState;
 	}
-}
 
-function App() {
-  return (
-	<Container className='App'>
-		<Row className='AppRow'>
-			<Col>
-				<h1 className="AppHeader">Github Browser</h1>
-				<SearchBar></SearchBar>
-			</Col>
-		</Row>
-		<Row className='AppRow InfoRow'>
-			<Col>
-				<ProfilePanel {...GetUser()}></ProfilePanel>
-			</Col>
-			<Col>
-				<ReposPanel></ReposPanel>
-			</Col>
-		</Row>
-	</Container>
-  );
+	async searchUserAsync(value) {
+
+		let user = await UserApi.getUserAsync(value);
+		if (user == null) {
+			this.setState(this.initialState);
+			return;
+		}
+
+		let [ repos, starred ] = await Promise.all([
+			UserApi.getReposAsync(user.login),
+			UserApi.getStarredAsync(user.login)
+		])
+		this.setState({ user, repos, starred });
+	}
+
+	render() {
+		return (
+			<Container className='App'>
+				<Row className='AppRow'>
+					<Col>
+						<h1 className="AppHeader">Github Browser</h1>
+						<SearchBar onClick={this.searchUserAsync}></SearchBar>
+					</Col>
+				</Row>
+				{this.state.user &&
+					<Row className='AppRow InfoRow'>
+						<Col>
+							<ProfilePanel user={this.state.user}></ProfilePanel>
+						</Col>
+						<Col>
+							<ReposPanel repos={this.state.repos} starred={this.state.starred}></ReposPanel>
+						</Col>
+					</Row>
+				}
+			</Container>
+		);
+	}
 }
 
 export default App;
