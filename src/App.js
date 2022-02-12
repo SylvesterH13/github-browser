@@ -15,7 +15,8 @@ class App extends Component {
 		this.initialState = {
 			user: null,
 			repos: null,
-			starred: null
+			starred: null,
+			notFoundUser: null
 		}
 		this.searchUserAsync = this.searchUserAsync.bind(this);
 		this.state = this.initialState;
@@ -25,7 +26,7 @@ class App extends Component {
 
 		let user = await UserApi.getUserAsync(value);
 		if (user == null) {
-			this.setState(this.initialState);
+			this.setState({ ...this.initialState, notFoundUser: value });
 			return;
 		}
 
@@ -33,7 +34,7 @@ class App extends Component {
 			UserApi.getReposAsync(user.login),
 			UserApi.getStarredAsync(user.login)
 		])
-		this.setState({ user, repos, starred });
+		this.setState({ user, repos, starred, notFoundUser: null });
 	}
 
 	render() {
@@ -54,6 +55,9 @@ class App extends Component {
 							<ReposPanel repos={this.state.repos} starred={this.state.starred}></ReposPanel>
 						</Col>
 					</Row>
+				}
+				{this.state.notFoundUser &&
+					<h1>The user <span className="UserNameNotFound">{this.state.notFoundUser}</span> was not found</h1>
 				}
 			</Container>
 		);

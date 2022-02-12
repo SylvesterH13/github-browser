@@ -14,3 +14,7 @@
   min-height: 70vh;
   max-height: 80vh;
 }
+
+.UserNameNotFound {
+  color: dodgerblue;
+}
