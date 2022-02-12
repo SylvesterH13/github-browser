@@ -1,8 +1,4 @@
-.SearchInput {
-    margin: 2vh 1vw;
-}
-
-.SearchBarButton {
+.SearchBar button {
     margin: 0 1vw;
     width: 10rem;
     font-size: 1rem;
