@@ -1,4 +1,5 @@
 import './index.css';
+import '../../common/style.css';
 import { useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import Nav from 'react-bootstrap/Nav';
@@ -30,7 +31,7 @@ function ReposPanel(props) {
     }    
 
     return (
-        <Card className="ReposCard">
+        <Card>
             <Card.Header>
                 <Nav variant="tabs" fill="true" activeKey={navBarKey} onSelect={(eventKey) => setNavBarKey(eventKey)}>
                     <Nav.Item>
@@ -41,7 +42,7 @@ function ReposPanel(props) {
                     </Nav.Item>
                 </Nav>
             </Card.Header>
-            <Card.Body>
+            <Card.Body className="CardBody">
                 <RepoList repos={GetRepos(navBarKey)}></RepoList>
             </Card.Body>
         </Card>

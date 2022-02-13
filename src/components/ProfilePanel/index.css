@@ -22,7 +22,7 @@ a.ProfileLink:active { color: grey !important; }
 
 .ProfileImage {
     border-radius: 50%;
-    max-width: 60%;   
+    max-width: 50%;   
     height: auto;
 }
 

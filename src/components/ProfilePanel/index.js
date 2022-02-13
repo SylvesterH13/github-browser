@@ -1,4 +1,5 @@
 import './index.css';
+import '../../common/style.css';
 import Card from 'react-bootstrap/Card';
 
 function ProfilePanel(props) {
@@ -8,7 +9,7 @@ function ProfilePanel(props) {
     return (
         <Card className="ProfileCard">
             <Card.Header>Profile</Card.Header>
-            <Card.Body>
+            <Card.Body className="CardBody">
                 <img src={user.avatar_url} className="ProfileImage"></img>
                 <h2><a href={user.html_url} target="_blank" className="ProfileLink">{user.login}</a></h2>
                 <div className="ProfileCardDetails">
